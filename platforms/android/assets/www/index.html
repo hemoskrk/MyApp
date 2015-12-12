@@ -1,218 +1,523 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
 <html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>JRD</title>
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+	    <!--<script type="text/javascript" src="PushNotification.js"></script>
+        <script src="js/language.js" type="text/javascript"></script>
+        <script src="js/UTMConvertor.js"></script>-->
+        <script src="js/jquery-1.10.2.js" type="text/javascript"></script>
+        <script src="js/jquery.mobile-1.4.0.js" type="text/javascript"></script>
+        <script src="js/jquery.soap.js" type="text/javascript"></script>
+        <script src="js/jquery.validate.js" type="text/javascript"></script>
+        <script src="js/json2.js" type="text/javascript"></script>
+        <script src="js/jstorage.js" type="text/javascript"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <link rel="stylesheet" type="text/css" media="all" href="jsDatePick_ltr.min.css" />
+
+        <script type="text/javascript" src="jsDatePick.min.1.3.js"></script>
+        <link type="text/css" href="css/style.css" id="style" rel="stylesheet" />
+        <link type="text/css" href="css/jquery.mobile-1.4.0.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+            </script>
 
 
 
-
-
-    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-    <!--<script type="text/javascript" src="PushNotification.js"></script>-->
-    <!--<script type="text/javascript" src="esri/init.js"></script>-->
-    <!--<script src="esri/labs.js"></script>-->
-    <!--<script src="esri/jquery.raty.js"></script>-->
-
-
-
-
-
-	<!--The viewport meta tag is used to improve the presentation and behavior of the samples
-	on iOS devices-->
-	<!--meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/ -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-
-	<title>Responsive Map Viewer</title>
-	<link rel="shortcut icon" href="fm_style/favicon.ico" /> 
-	<link rel="icon" type="image/png" href="fm_style/fm_icons/globe2.png" />
-
-	<link rel="stylesheet" type="text/css" href="fm_style/css/Popup.css" />
-  <link rel="stylesheet" type="text/css" href="fm_style/css/PopupMobile.css" />
-
- 	<link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.7/js/esri/css/esri.css">   
-
-	<link rel='stylesheet' type='text/css' href='fm_style/page.css' />
-  <link rel='stylesheet' type='text/css' href='fm_style/page.css' />
-	
-	<script type="text/javascript" src='fm_javascript/page-header.js'></script>
-	<!--[if lte IE 8]>
-		<link rel='stylesheet' type='text/css' href='fm_style/ie.css' />
-		<script type='text/javascript' src='fm_javascript/html5.js'></script>
-		<script type='text/javascript' src='fm_javascript/lib/respond.min.js'></script>
-	<![endif]-->
-
-	<link rel="apple-touch-icon" href="fm_style/fm_icons/globe2.png" />
-	<link rel="apple-touch-icon" sizes="72x72" href="fm_style/fm_icons/globe2-72.png" />
-	<link rel="apple-touch-icon" sizes="114x114" href="fm_style/fm_icons/globe2-114.png" />
-	
-	<link rel='stylesheet' type='text/css' href='fm_style/dojo-overrides.css' />
-
-
-    <script>
-
-        function hbar() {
-            //alert("device.platform");
-            //alert(device.platform);
-
-
-
-            var x = "0px";
-
-
-
-
-
-
-            if (device.platform == 'iOS') {
-                x = "20px";
-
-            }
-
-            else {
-                x = "0px";
-
-            }
-
-
-
-
-
-            document.getElementById("hbn").style.height = x;
-
+        <!--<style type="text/css">
+        #hdrabs {
+       
+            position:fixed;
+            /*left: 100px;
+            top: 200px;
+            background-color: #f1f1f1;
+            width: 180px;
+            padding: 10px;
+            color: black;
+            border: #0000cc 2px dashed;
+            display: none;*/
         }
-
-    </script>
-
-</head>
-
-<body onload="hbar()">
-    <!-- absolute elements (overlays) -->
-    <div class='fm_basemap_list fm_overlay'>
-        <div class='fm_close'></div>
-        <div id='basemapList' class='fm_handle'></div>
-    </div>
-    <div class='fm_measurement fm_overlay'>
-        <div class='fm_close'></div>
-        <div class='fm_handle' style='height: 100%;'><div id='measurementDiv'></div></div>
-    </div>
-    <div class='fm_search fm_overlay'>
-        <div class='fm_close fm_no_margin'></div>
-        <div class='fm_location_bar' class='fm_handle'>
-            <input type='text' class='fm_location_input' placeholder='Find location...' />
-            <span class='fm_location_button fm_icon fm_search_icon'></span>
-        </div>
-    </div>
+    </style>-->
 
 
-    <div id="hbn" style="background-color: white; "></div>
+        <script language="JavaScript">
+            //  http://78.110.2.27/mail/Service1.asmx?op=GetEvents
+            var maincats;
+            var username, password;
+            var x;
+            function xx() {
+                
+
+                $.ajax({
+
+                    type: "GET",
+                  //  url: "http://78.110.2.27/apptest/Service1.svc/login?id=" + document.getElementById("userid").value + "&ps=" + document.getElementById("userpass").value,
+                    url: "http://78.110.2.27/apptest/Service1.svc/login",
+
+                    data: { id: document.getElementById("userid").value, ps: document.getElementById("userpass").value },
+                    dataType: "json",
+                    async: true,
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data, status) {
+                        console.log("CallWM");
+                        var x = data;
+
+debugger;
+
+                        if (x != "bad login") {
+
+                         //   $("#login").hide();
+
+                         //   var d = document.getElementById("title").innerHTML = x;
+
+                            username = document.getElementById("userid").value;
+
+
+                            password = document.getElementById("userpass").value;
+                          
+                            maincats();
+
+                        }
+
+                        else {
+debugger;
+                            alert(x);
+                        }
+                    },
+                    failure: function (data) {
+debugger;
+                        alert(data.d);
+                    },
+                    error: function (data) {
+debugger;
+                        alert(data.d);
+                    }
+                });
 
 
 
-    <header class='fm_strap_bar' style=" background-color: #2c97d3;">
-        <!--<header class='fm_strap_bar' style="height: 60px; background-color: #283c44;">-->
 
 
-        <div class='fm_title_bar'></div>
-        <!--مستكشف جدة الجغرافي-->
 
-    </header>
-    <nav style="margin-top: 17px; background-color: #0e5a87;">
-        <div class='fm_nav'>
-            <a href='#' class='fm_basemap_trigger fm_button'>
-                <span class='fm_icon fm_basemap_icon'></span>
-                <span class='fm_icon_text fm_show'>الخريطة</span>
-            </a>
-            <a href='#' class='fm_measure_trigger fm_button'>
-                <span class='fm_icon fm_measure_icon'></span>
-                <span class='fm_icon_text fm_show'>قياسات</span>
-            </a>
-            <a href='#' class='fm_search_trigger fm_button'>
-                <span class='fm_icon fm_search_icon'></span>
-                <span class='fm_icon_text fm_show'>بحث</span>
-            </a>
+            }
+
+
+
+            function maincats() {
+
+
+
+                $("#Mpage").hide();
 
 
 
 
+                //&password='password'
+                
 
-            <!-- float right elements are displayed in reverse order -->
-            <a href='#' class='fm_details_trigger fm_trigger fm_button fm_float_right' data-panel='fm_description'>
-                <span class='fm_icon fm_details_icon'></span>
-                <span class='fm_icon_text'>Details</span>
-            </a>
-            <a href='#' class='fm_settings_trigger fm_trigger fm_button fm_float_right' data-panel='fm_settings'>
-                <span class='fm_icon fm_settings_icon'></span>
-                <span class='fm_icon_text'>Details</span>
-            </a>
-            <a href='#' class='fm_legend_trigger fm_trigger fm_button fm_float_right' data-panel='fm_legend'>
-                <span class='fm_icon fm_legend_icon'></span>
-                <span class='fm_icon_text'>Legend</span>
-            </a>
-            <a href='#' class='fm_trigger fm_button fm_float_right' data-panel='fm_print'>
-                <span class='fm_icon fm_print_icon'></span>
-                <span class='fm_icon_text'>Print</span>
-            </a>
-            <a href='#' class='fm_share_trigger fm_trigger fm_button fm_float_right' data-panel='fm_share'>
-                <span class='fm_icon fm_share_icon'></span>
-                <span class='fm_icon_text'>Share</span>
-            </a>
-        </div>
-    </nav>
+                $.ajax({
 
-    <div class='fm_container_main'>
-        <!--div class='fm_left_content collapse'>
-            <div class='fm_close fm_hide'><img src='images/close.png' class='fm_close_icon' /></div>
-            <div class='fm_container'>sample description</div>
-        </div-->
-        <div class='fm_center_content fm_right'>
-            <img src='fm_style/fm_icons/crosshairs-gray.png' class='fm_find_me' />
-            <div id='map' class='fm_map tundra'></div>
-        </div>
-        <div class='fm_right_content'>
-            <div class='fm_close fm_hide'></div>
-            <!--div class='fm_panel_header'>
-                <div class='fm_panel_header_content fm_container'>Header</div>
-            </div-->
-            <div class='*fm_panel_container fm_container'>
-                <div class='fm_description fm_panel'>Map Description</div>
-                <div id='fm_legendDiv' class='fm_legend fm_panel'>Map Legend</div>
-                <div class='fm_tools fm_panel'>Map Tools</div>
-                <div class='fm_print fm_panel'>Print Options</div>
-                <div class='fm_share fm_panel'>
-                    <p>Embed code:</p>
-                    <textarea class='fm_embed_code'></textarea>
+                    type: "GET",
+                    url: "http://78.110.2.27/apptest/Service1.svc/GetApps",
+
+                    data: { id: username, ps: password },
+                    dataType: "json",
+                    async: true,
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data, status) {
+                        console.log("CallWM");
+                        maincats = data;
+                      
+                        creatmaincats();
+
+
+
+                    },
+                    failure: function (data) {
+                        //   alert(data.d);
+                    },
+                    error: function (data) {
+                        //   alert(data.d);
+                    }
+                });
+
+
+
+
+
+
+
+
+
+            }
+
+            //function loadCatAndSubList(data, targetList, nextPage) {
+            //    try {
+            //        $(targetList).html("");
+            //        var pJSON = StringifyAndParse(data);
+            //        if (pJSON != "") {
+            //            for (var i in pJSON) {
+            //                // added by AAziz ---- (Start)
+            //                // changing the categories and sub-categories as per default language selected
+            //                if (default_language == "arabic") {
+            //                    //console.log(pJSON[i].id + " - " + pJSON[i].Name);
+            //                    $("<li><a class='ui-btn ui-btn-icon-right ui-icon-carat-r' id='" + pJSON[i].id + "' name='" + pJSON[i].ParentId + "'>" + pJSON[i].Name + "</a></li>").appendTo(targetList);
+            //                } else {
+            //                    //console.log(pJSON[i].id + " - " + pJSON[i].EName);
+            //                    $("<li><a class='ui-btn ui-btn-icon-right ui-icon-carat-r' id='" + pJSON[i].id + "' name='" + pJSON[i].ParentId + "'>" + pJSON[i].EName + "</a></li>").appendTo(targetList);
+            //                }
+            //                // added by AAziz ---- (End)
+            //            }
+            //        } else {
+            //            $("<li><a class='ui-btn'>" + eval('noInfo.' + default_language) + "</a></li>").appendTo(targetList);
+            //        }
+            //        //console.log("List Load Complete");
+            //    } catch (error) {
+            //        //console.log("Error at loadCatAndSubList:" + error);
+            //    }
+            //    $.mobile.loading("hide");
+            //    if (nextPage != null)
+            //        $.mobile.navigate(nextPage);
+            //}
+
+            function creatmaincats() {
+
+
+                debugger;
+              
+
+          
+                var test = document.getElementById("maincatlist");
+         
+           
+              
+
+              //  var ul = document.createElement('ul');
+
+
+                ////document.body.appendChild(test);
+                //test.appendChild(ul);
+
+
+               
+
+                //var li = document.createElement('li');
+
+                //ul.appendChild(li);
+
+                //li.innerHTML = li.innerHTML;
+
+                for (var i = 0; i < maincats.length; i++) {
+
+
+                    //"' name='" + maincats[i].ParentId +
+
+                    $("<li><a class='ui-btn ui-btn-icon-right ui-icon-carat-r' id='" + maincats[i].id + "'>" + maincats[i].Descr + "</a></li>").appendTo(test);
+
+
+
+
+
+                    //var li = document.createElement('li');
+
+                    //ul.appendChild(li);
+                    //li.innerHTML = maincats[i].Descr;
+                    //li.id = maincats[i].code;
+
+                    ///  li.innerHTML = li.innerHTML + array[i];
+
+
+                }
+                 // $.mobile.navigate("#maincats");
+                debugger;
+               
+                $("#maincats").show();
+                
+              //  $("#calender").show();
+            }
+
+            // $('#slctCatList').on('click', 'a', (alert(this.id)));
+
+        </script>
+        <script>
+          
+
+
+
+
+
+
+
+
+            function CallMyService() {
+                $.support.cors = true;
+                var param = '{"firstName": "Ahmed","lastName": "Prince"}';
+                var param1 = '{"value": "10"}';
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    url: 'http://78.110.2.27/apptest/Service1.svc/login?',
+                    data: param1,
+                    dataType: "json",
+                    processData: false, success: ServiceSucceeded,
+                    error: ServiceFailed
+                });
+            }
+
+            // ---- If Error -------------------        
+            function ServiceFailed(result) {
+                Log('Failed: ' + result.status + '  ' + result.statusText);
+            }
+
+            // ---- If Success -------------------        
+            function ServiceSucceeded(result) {
+                var resultObject = result.GetPdfFilesResult;
+                Log("Success: " + resultObject);
+            }
+
+            function Log(msg) {
+                // Log your Message.
+                alert(msg);
+            }
+
+            $(document).ready(
+               function () {
+
+                   /*try {
+                       setTimeout(function () {
+                           navigator.splashscreen.hide();
+                           //isAuthorizedDevices(); //comment for guest
+                       }, 3000);
+                   }
+                   catch (error) {
+                       alertNative(error);
+                   }*/
+
+                   $("#page").show();
+                //   CallMyService();
+                   function nextPage() {
+                       // alert('');
+                       $.mobile.navigate("#OffJob");
+                   }
+
+                   $("#onJobBtn").click(nextPage);
+               }
+              );
+        </script>
+    </head>
+    <body>    
+
+      
+        
+                   
+        <div data-role="page" id="Mpage">
+
+
+
+
+
+
+                <div role="main" class="ui-content">
+                    <div id="logo1" style="text-align:center">
+                        <img src="img/COPANY_LOGO.jpg" width="30%" height="50%" style="opacity: 0.9; background-size: contain; background-position: center;
+                                    background-repeat: no-repeat; padding-top: 5px;" />
+                        <!--<img src="img/COPANY_TITLE.jpg" width="60%"  style="opacity: 0.9; background-size: contain; background-position: center;
+                                    background-repeat: no-repeat; padding-top: 5px;" />-->
+                        <span><h1>مجموعة الضيافة</h1> </span>
+                    </div>
+                    <!--<div id="navigation">
+                        <a href="#ObjPage"  data-transition="flip">
+                            <img src="img/2-objective.png" width="100%" id="Image2" />
+                        </a>
+                        <a href="#ONJobPage" data-transition="flip" >
+                            <img src="img/2-no-job.png" width="100%" id="Image3"  />
+                        </a>
+                        <a href="#OFFJobPage" data-transition="flip">
+                            <img src="img/2-off-job.png" width="100%" id="Image4" /></a>
+                        <a href="#helpPage" data-transition="flip">
+                            <img src="img/2-ann.png" width="100%" id="Image5" /></a>
+                    </div>-->
+
+                    <div id="login">
+                        <table width="100%">
+                            <tr width="100%">
+                               
+                                <td>
+                                    <input type="text" name="firstname" id="userid">
+                                </td>
+                                <td>
+    <span> اسم الدخول</span>
+</td>
+                            </tr>
+
+
+                            <tr>
+                               
+                                <td>
+                                    <input type="password" name="firstname" id="userpass">
+                                </td>
+                                <td>
+    <span> كلمة المرور</span>
+</td>
+                            </tr>
+                        </table>
+                        <button onclick="xx()">Submit</button>
+                    </div>
                 </div>
-                <div class='fm_settings fm_panel'>App Settings</div>
             </div>
+
+
+
+        <div data-role="page" id="maincats">
+            <div data-role="header" data-theme="b" style="text-align:center" id="hdrabs">
+                <!--<a href="#Mpage" data-direction="reverse" class="ui-btn ui-btn-right ui-corner-all ui-shadow ui-icon-home ui-btn-icon-right">Home</a>-->
+                <img src="img/COPANY_LOGO.jpg" width="20%" style="opacity: 0.9; background-size: contain; background-position: center;
+                                    background-repeat: no-repeat; padding-top: 5px;" />
+                <!--<img src="img/COPANY_TITLE.jpg" width="40%" style="opacity: 0.9; background-size: contain; background-position: center;
+                                    background-repeat: no-repeat; padding-top: 5px;" />-->
+                <span><h1>مجموعة الضيافة</h1> </span>
+            </div>
+            <!--<div role="main" class="ui-content">
+       
+                <div id="navigation1">
+                    <p>
+                        This application is intended to enhance JRD Employees, Contractors & others on Safety. Also, to promote safety culture within communities.
+                    </p>
+                </div>
+            </div>-->
+
+
+            <div id="hbn" style=" visability:hidden;"></div>
+            <!--<div data-role="header" data-theme="b" data-add-back-btn="true">
+                <a id="slctCatBckBtn" href="#page" data-direction="reverse" class="ui-btn ui-btn-left ui-icon ui-nodisc-icon ui-corner-all ui-btn-icon-notext ui-icon-carat-l">
+                </a>
+                <h1 id="slctCatLbl"></h1>
+            </div>-->
+            <!--style=" margin-top:50px;"-->
+            <div role="main" class="ui-content" >
+                <ul id="maincatlist" data-role="listview" data-theme="b"></ul>
+
+              
+
+            </div>
+
+            <script type="text/javascript">
+                window.onload = function () {
+
+
+                    g_globalObject = new JsDatePick({
+                        useMode: 1,
+                        isStripped: true,
+                        target: "div3_example"
+                        /*selectedDate:{				This is an example of what the full configuration offers.
+                            day:5,						For full documentation about these settings please see the full version of the code.
+                            month:9,
+                            year:2006
+                        },
+                        yearsRange:[1978,2020],
+                        limitToToday:false,
+                        cellColorScheme:"beige",
+                        dateFormat:"%m-%d-%Y",
+                        imgPath:"img/",
+                        weekStartDay:1*/
+                    });
+
+                    g_globalObject.setOnSelectedDelegate(function () {
+                        var obj = g_globalObject.getSelectedDay();
+                        alert("date is : " + obj.day + "/" + obj.month + "/" + obj.year);
+                        document.getElementById("div3_example_result").innerHTML = obj.day + "/" + obj.month + "/" + obj.year;
+                    });
+
+
+
+
+                };
+            </script>
+
+
+            <div id="div3_example" style="margin:10px 0 30px 0; border:dashed 1px red; width:205px; height:230px;">
+
+            </div>
+            <div id="div3_example_result" style="height:20px; line-height:20px; margin:10px 0 0 0; border:dashed 1px #666;"></div>
+
         </div>
-    </div>
 
-    <footer style=" background-color: #0e5a87;">
-        <div class='fm_map_info'>
-            <span class='fm_coordsinfo' style="padding: 0 5px;"></span>|
-            <span class='fm_scaleinfo' style="padding: 0 5px;"></span>
-            |&nbsp;
-            <span class='fm_zoomlevelinfo' style="padding: 0 5px;"></span>
+
+
+        
+        <div data-role="page" id="calender">
+            <div data-role="header" data-theme="b" style="text-align:center" id="hdrabs">
+                <!--<a href="#Mpage" data-direction="reverse" class="ui-btn ui-btn-right ui-corner-all ui-shadow ui-icon-home ui-btn-icon-right">Home</a>-->
+                <img src="img/COPANY_LOGO.jpg" width="20%" style="opacity: 0.9; background-size: contain; background-position: center;
+                                    background-repeat: no-repeat; padding-top: 5px;" />
+                <!--<img src="img/COPANY_TITLE.jpg" width="40%" style="opacity: 0.9; background-size: contain; background-position: center;
+                                background-repeat: no-repeat; padding-top: 5px;" />-->
+                <span><h1>مجموعة الضيافة</h1> </span>
+            </div>
+            <script type="text/javascript">
+                window.onload = function () {
+
+
+                    g_globalObject = new JsDatePick({
+                        useMode: 1,
+                        isStripped: true,
+                        target: "div3_example"
+                        /*selectedDate:{				This is an example of what the full configuration offers.
+                            day:5,						For full documentation about these settings please see the full version of the code.
+                            month:9,
+                            year:2006
+                        },
+                        yearsRange:[1978,2020],
+                        limitToToday:false,
+                        cellColorScheme:"beige",
+                        dateFormat:"%m-%d-%Y",
+                        imgPath:"img/",
+                        weekStartDay:1*/
+                    });
+
+                    g_globalObject.setOnSelectedDelegate(function () {
+                        var obj = g_globalObject.getSelectedDay();
+                        alert("date is : " + obj.day + "/" + obj.month + "/" + obj.year);
+                        document.getElementById("div3_example_result").innerHTML = obj.day + "/" + obj.month + "/" + obj.year;
+                    });
+
+
+
+
+                };
+            </script>
+
+
+            <div id="div3_example" style="margin:10px 0 30px 0; border:dashed 1px red; width:205px; height:230px;">
+
+            </div>
+            <div id="div3_example_result" style="height:20px; line-height:20px; margin:10px 0 0 0; border:dashed 1px #666;"></div>
+
+
         </div>
-    </footer>
-
-    <script type='text/javascript' src='fm_javascript/lib/jRespond.min.js'></script>
-    <script type='text/javascript' src='fm_javascript/lib/jquery-1.9.0.min.js'></script>
-    <script type='text/javascript' src='fm_javascript/lib/jquery-ui-1.8.21.custom.min.js'></script>
-
-    <script type="text/javascript">var djConfig = { parseOnLoad: true };</script>
-
-    <script src="http://js.arcgis.com/3.7compact"></script>
-
-    <script type="text/javascript" src='fm_javascript/map.js'></script>
-    <script type='text/javascript' src='fm_javascript/page.js'></script>
-
-    <!--
-        <script type="text/javascript" src='analytics.js'></script>
-    -->
-</body>
+    </body>
 </html>

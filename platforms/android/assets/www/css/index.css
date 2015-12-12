@@ -47,7 +47,7 @@ body {
 
 /* Portrait layout (default) */
 .app {
-    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
+    background:url(../img/newLogo.png) no-repeat center top; /* 170px x 200px */
     position:absolute;             /* position in the center of the screen */
     left:50%;
     top:50%;
@@ -113,3 +113,45 @@ h1 {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
+/*--------------------------Ahmed------------------------------------*/
+#navigation{
+	padding-top:10%;
+	padding-bottom:-5%;
+	}
+#logo{
+	/*margin-top: 25px;
+    padding-top: 25px;*/
+    background-image:  url("../img/newLogo1.png");
+	background-position:center;
+	background-repeat:no-repeat;
+	background-size:contain;
+	width:100%;
+	height:50%;
+	opacity:0.9;
+	}
+/*#logo:before{   
+	content: "";
+	display: block;
+	padding-top: 40%; /* initial ratio of 1:1
+	}*/
+.ui-page-bw, #Mpage,#ObjPage,#OFFJobPage,#ONJobPage,#maincats{
+	/*background-position:center;
+	background-size: cover !important;
+	background-repeat: no-repeat !important;
+	background-color: transparent;
+    background-color: #1f1f1f;*/
+	background-image: url("../img/bg.jpg"); /**/
+	
+	-webkit-background-size: cover;          
+    -moz-background-size: cover;         
+    -o-background-size: cover; 
+	}
+.ui-page .ui-content .ui-listview .ui-btn {
+    white-space : normal;
+	}
+ #navigation1{	
+	background-image: url("../img/objective.png"); 
+	width:100%;
+    height: 100%;	
+     
+	}
